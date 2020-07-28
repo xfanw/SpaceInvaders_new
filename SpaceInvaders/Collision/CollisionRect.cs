@@ -23,7 +23,10 @@ namespace SpaceInvaders
         }
         public bool Intersect(CollisionRect pA, CollisionRect pB)
         {
-            if (pA.x + pA.width < pA.x || pB.x + pB.width < pA.x || pA.y + pA.height < pB.height || pB.y + pB.height < pA.height)
+            if (pA.x + pA.width / 2 < pB.x - pB.width / 2 ||
+                pB.x + pB.width / 2 < pA.x - pA.width / 2 ||
+                pA.y + pA.height / 2 < pB.y - pB.height / 2 ||
+                pB.y + pB.height / 2 < pA.y - pA.height / 2)
             {
                 return false;
             }
