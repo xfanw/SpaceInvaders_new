@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SpaceInvaders.TextureMan" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAhAAAAABIAEEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\Texture\TextureMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.ImageMan" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAhAAAAABIAEEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\Image\ImageMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.Manager" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAIAEAAIAAAiCAgAAIgAAAAAAAgEAAAgAAAgAACA=</HashCode>
+      <FileName>DLink\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.ImageLink" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graphics\Image\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.Image" Collapsed="true">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAACAAAAAAAAAAAAoAEAAAAEAAAAAAAAQABABAA=</HashCode>
+      <FileName>Graphics\Image\Image.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pTex" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpaceInvaders.TextureLink" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graphics\Texture\Texture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.Texture" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAgAgAEAACAEQAAAAAAAAAAABAA=</HashCode>
+      <FileName>Graphics\Texture\Texture.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pAzulTex" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Azul.Sprite" Collapsed="true">
+    <Position X="7.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Azul.Texture" Collapsed="true">
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceInvaders.SpriteBase" Collapsed="true">
+    <Position X="8.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAAAAABAAAAAAAAAAAAAAAAAABBgAABAAAA=</HashCode>
+      <FileName>Graphics\Sprite\SpriteBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.GameSprite" Collapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpaceInvaders.GameSprite.NAME" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics\Sprite\GameSprite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="pAzulSprite" Type="Azul.Sprite">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.086" Y="0.37" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAABAAAAAQAAgAAAAAAEQAAAABAEAAAABIA=</HashCode>
+      <FileName>Graphics\Sprite\GameSprite.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pAzulSprite" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpaceInvaders.GameSpriteMan" Collapsed="true">
+    <Position X="7.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAhAAAAABIAEEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\Sprite\GameSpriteMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.BoxSpriteMan" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAhAAAAABIAEEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\Sprite\BoxSpriteMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.BoxSprite" Collapsed="true">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpaceInvaders.BoxSprite.NAME" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics\Sprite\BoxSprite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="pBox" Type="Azul.SpriteBox">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.008" Y="0.381" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="pColor" Type="Azul.Color">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.023" Y="0.402" Height="0.182" Width="0.706" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAQAAAACQAAABAAAQAAAgAAAAAAEQAAAARABAAAABAA=</HashCode>
+      <FileName>Graphics\Sprite\BoxSprite.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pBox" />
+      <Field Name="pColor" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Azul.SpriteBox" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Azul.Color" Collapsed="true">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SpaceInvaders.SpriteBatchMan" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAgAAAAAAhAAAAABIAEEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\SpriteNodeBatch\SpriteBatchMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.SpriteNodeMan" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAhAAAAIAEAAEAAAgAAAAAAAA=</HashCode>
+      <FileName>Graphics\SpriteNodeBatch\SpriteNodeMan.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SpaceInvaders.SpriteNode" Collapsed="true">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <AssociationLine Name="pSpriteBase" Type="SpaceInvaders.SpriteBase">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.995" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAACAAAAAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Graphics\SpriteNodeBatch\SpriteNode.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pSpriteBase" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SpaceInvaders.SpriteBatch" Collapsed="true">
+    <Position X="16.25" Y="3" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="SpaceInvaders.SpriteBatch.NAME" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Graphics\SpriteNodeBatch\SpriteBatch.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="pSpriteNodeMan" Type="SpaceInvaders.SpriteNodeMan" ManuallyRouted="true">
+      <Path>
+        <Point X="16.25" Y="3.346" />
+        <Point X="15.568" Y="3.346" />
+        <Point X="15.568" Y="2.75" />
+        <Point X="14" Y="2.75" />
+        <Point X="14" Y="2.441" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAgABAAAAAAAgAAAAIAEQAAAAAAAQAAABAA=</HashCode>
+      <FileName>Graphics\SpriteNodeBatch\SpriteBatch.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pSpriteNodeMan" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
