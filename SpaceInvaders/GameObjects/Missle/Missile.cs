@@ -10,6 +10,7 @@ namespace SpaceInvaders
             this.x = posX;
             this.y = posY;
             this.bHit = false;
+            this.speed = 1.0f;
         }
 
         ~Missile() { }
@@ -22,10 +23,14 @@ namespace SpaceInvaders
 
         public void Move()
         {
-            if (!bHit)
-            {
-                this.y += 1.0f;
-            }
+            //if (!bHit)
+            //{
+               this.y += this.speed;
+            //} else
+            //{
+            //    this.y = 0;
+            //    bHit = false;
+            //}
         }
         // Visitor + Collision
         public override void Accept(CollisionVisitor other)
@@ -62,5 +67,6 @@ namespace SpaceInvaders
         }
 
         public bool bHit;
+        public float speed = 0.0f;
     }
 }
