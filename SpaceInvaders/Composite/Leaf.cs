@@ -2,7 +2,7 @@
 
 namespace SpaceInvaders
 {
-    public class Leaf : GameObject
+    public abstract class Leaf : GameObject
     {
         public Leaf(GameSprite.Name spriteName, GameObject.Name name)
         : base(spriteName, name)

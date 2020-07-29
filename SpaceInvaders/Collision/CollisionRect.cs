@@ -21,7 +21,7 @@ namespace SpaceInvaders
             : base()
         {
         }
-        public bool Intersect(CollisionRect pA, CollisionRect pB)
+        static public bool Intersect(CollisionRect pA, CollisionRect pB)
         {
             if (pA.x + pA.width / 2 < pB.x - pB.width / 2 ||
                 pB.x + pB.width / 2 < pA.x - pA.width / 2 ||

@@ -2,7 +2,7 @@
 
 namespace SpaceInvaders
 {
-    public class Composite : GameObject
+    public abstract class Composite : GameObject
     {
         public Composite()
         {
@@ -36,18 +36,34 @@ namespace SpaceInvaders
             this.privRemoveNode(ref this.poHead, ref poLast, pComponent);
         }
 
-        //public override void Move()
-        //{
-        //    DLink pNode = this.poHead;
+        protected void baseUpdateBoundingBox(/*Component pStart*/)
+        {
+            //GameObject pNode = (GameObject)pStart;
 
-        //    while (pNode != null)
-        //    {
-        //        Component pComponent = (Component)pNode;
-        //        pComponent.Move();
+            // point to ColTotal
+            CollisionRect ColTotal = GetCollisionObject().poCollisionRect;
 
-        //        pNode = pNode.pNext;
-        //    }
-        //}
+            // Get the first child
+            GameObject pNode = (GameObject)Iterator.GetChild(this);
+
+            // Initialized the union to the first block
+            ColTotal.Set(pNode.GetCollisionObject().poCollisionRect);
+
+            // loop through sliblings
+            while (pNode != null)
+            {
+                ColTotal.Union(pNode.GetCollisionObject().poCollisionRect);
+
+                // go to next sibling
+                pNode = (GameObject)Iterator.GetSibling(pNode);
+            }
+
+            //this.poColObj.poColRect.Set(201, 201, 201, 201);
+            this.x = this.GetCollisionObject().poCollisionRect.x;
+            this.y = this.GetCollisionObject().poCollisionRect.y;
+
+            //  Debug.WriteLine("x:{0} y:{1} w:{2} h:{3}", ColTotal.x, ColTotal.y, ColTotal.width, ColTotal.height);
+        }
         public override void Print()
         {
             DLink pNode = this.poHead;

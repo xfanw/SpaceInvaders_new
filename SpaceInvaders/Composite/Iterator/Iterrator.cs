@@ -33,7 +33,12 @@ namespace SpaceInvaders
 
             return pChild;
         }
-        abstract public Component GetSibling(Component pNode);
+        static public Component GetSibling(Component pNode)
+        {
+            Debug.Assert(pNode != null);
+
+            return (Component)pNode.pNext;
+        }
         //abstract public bool HasNext();
 
 

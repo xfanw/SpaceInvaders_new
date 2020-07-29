@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    public abstract class Component : DLink
+    public abstract class Component : CollisionVisitor
     {
         public abstract void Add(Component c);
 
@@ -23,6 +23,7 @@ namespace SpaceInvaders
         // Data:
         // --------------------------------------
         public Component pParent = null;
+        public Component pReverse = null;
         public Container holder = Container.Unknown;
     }
 }

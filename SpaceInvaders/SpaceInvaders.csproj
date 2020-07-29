@@ -68,8 +68,11 @@
   <ItemGroup>
     <Compile Include="Collision\CollisionObject.cs" />
     <Compile Include="Collision\CollisionRect.cs" />
+    <Compile Include="Collision\Visitor\CollisionVisitor.cs" />
+    <Compile Include="Collision\Visitor\ColPair.cs" />
     <Compile Include="Composite\Component.cs" />
     <Compile Include="Composite\Composite.cs" />
+    <Compile Include="Composite\Iterator\ReverseIterator.cs" />
     <Compile Include="Composite\Leaf.cs" />
     <Compile Include="GameObjects\Aliens\Aliens.cs" />
     <Compile Include="GameObjects\Aliens\AliensColumn.cs" />
