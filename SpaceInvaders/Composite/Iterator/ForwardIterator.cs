@@ -87,15 +87,12 @@ namespace SpaceInvaders
             return (this.pCurr == null);
         }
 
-        public override Component GetSibling(Component pNode)
-        {
-            {
-                Debug.Assert(pNode != null);
+        //new public Component GetSibling(Component pNode)
+        //{
+        //    Debug.Assert(pNode != null);
 
-                return (Component)pNode.pNext;
-            }
-        }
-
+        //    return (Component)pNode.pNext;
+        //}
         private Component pCurr;
         private Component pRoot;
 

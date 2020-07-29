@@ -105,7 +105,7 @@ namespace SpaceInvaders
 
             Add(GameSprite.Name.Sprite_Octopus, Image.Name.Img_Octopus_Open, 100, 350, 30, 20);
 
-            Add(GameSprite.Name.Sprite_ShipBullet, Image.Name.Img_ShipBullet, 350, 100, 4, 10);
+            Add(GameSprite.Name.Sprite_Missle, Image.Name.Img_ShipBullet, 350, 100, 4, 10);
             // Ships 1 movable, 2 unmovable
             Add(GameSprite.Name.Sprite_Ship, Image.Name.Img_Ship, 400, 100, 35, 25);
             Add(GameSprite.Name.Sprite_Ship1, Image.Name.Img_Ship, 70, 25, 35, 25);

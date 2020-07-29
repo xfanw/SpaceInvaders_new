@@ -26,15 +26,15 @@ namespace SpaceInvaders
             switch (type)
             {
                 case AlienCategory.Type.Squid:
-                    pGameObj = new Aliens(GameSprite.Name.Sprite_Squid, name, posX, posY);
+                    pGameObj = new Alien(GameSprite.Name.Sprite_Squid, name, posX, posY);
                     break;
 
                 case AlienCategory.Type.Crab:
-                    pGameObj = new Aliens(GameSprite.Name.Sprite_Crab, name, posX, posY);
+                    pGameObj = new Alien(GameSprite.Name.Sprite_Crab, name, posX, posY);
                     break;
 
                 case AlienCategory.Type.Octopus:
-                    pGameObj = new Aliens(GameSprite.Name.Sprite_Octopus, name, posX, posY);
+                    pGameObj = new Alien(GameSprite.Name.Sprite_Octopus, name, posX, posY);
                     break;
 
                 case AlienCategory.Type.Grid:

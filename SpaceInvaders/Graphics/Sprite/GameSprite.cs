@@ -12,7 +12,7 @@ namespace SpaceInvaders
             Sprite_Squid,
             Sprite_Octopus,
             
-            Sprite_ShipBullet,
+            Sprite_Missle,
             Sprite_Ship,
             Sprite_Ship1,
             Sprite_Ship2,
@@ -42,7 +42,7 @@ namespace SpaceInvaders
             YellowBird,
             GreenBird,
             WhiteBird,
-
+            BlueBird,
             RedGhost,
             PinkGhost,
             BlueGhost,

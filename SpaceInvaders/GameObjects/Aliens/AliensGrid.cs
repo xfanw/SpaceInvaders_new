@@ -14,37 +14,35 @@ namespace SpaceInvaders
 
         public override void Update()
         {
-            ForwardIterator pIt = new ForwardIterator(this);
-
-            Component pNode = pIt.First();
-            Debug.Assert(pNode != null);
-
-            GameObject pGameObj = (GameObject)Iterator.GetChild(this);
-
-            CollisionRect ColTotal = this.pCollosionObject.poCollisionRect;
-            ColTotal.Set(pGameObj.GetCollisionObject().poCollisionRect);
-           // Debug.WriteLine("\n");
-            while (!pIt.IsDone())
-            {
-                pGameObj = (GameObject)pNode;
-                //Debug.WriteLine("obj:{0} ", pGameObj.GetHashCode());
-
-                ColTotal.Union(pGameObj.GetCollisionObject().poCollisionRect);
-                pNode = pIt.Next();
-            }
-
-            //this.pColObj.pColRect.Set(201, 201, 201, 201);
-            this.x = this.pCollosionObject.poCollisionRect.x;
-            this.y = this.pCollosionObject.poCollisionRect.y;
-
-            //  Debug.WriteLine("x:{0} y:{1} w:{2} h:{3}", ColTotal.x, ColTotal.y, ColTotal.width, ColTotal.height);
+            baseUpdateBoundingBox();
 
             base.Update();
 
         }
 
+        // Visitor + Collision
+        public override void Accept(CollisionVisitor other)
+        {
+            other.VisitAlienGrid(this);
+        }
 
-        // Data
+        public override void VisitMissileGroup(MissileGrid g)
+        {
+            // AliensGrid vs MissileGroup
+            Debug.WriteLine("         collide:  {0} <-> {1}", g.GetName(), this.GetName());
+
+            // AliensCol vs Missile 
+            ColPair.Collide((GameObject)g.GetFirstChild(), (GameObject)this.GetFirstChild());
+        }
+
+        public override void VisitMissile(Missile m)
+        {
+            // AliensGrid vs Missile
+            Debug.WriteLine("         collide:  {0} <-> {1}", m.GetName(), this.GetName());
+
+            // AliensCol vs Missile
+            ColPair.Collide(m, (GameObject)this.GetFirstChild());
+        }
 
     }
 }

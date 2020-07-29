@@ -5,8 +5,16 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
+
     class SpaceInvaders : Azul.Game
     {
+        IrrKlang.ISoundEngine sndEngine = null;
+        IrrKlang.ISound music = null;
+        IrrKlang.ISoundSource sndVader0 = null;
+        IrrKlang.ISoundSource sndVader1 = null;
+        IrrKlang.ISoundSource sndVader2 = null;
+        IrrKlang.ISoundSource sndVader3 = null;
+        Missile pMissile = null;
         //-----------------------------------------------------------------------------
         // Game::Initialize()
         //		Allows the engine to perform any initialization it needs to before 
@@ -40,6 +48,23 @@ namespace SpaceInvaders
             TimerMan.Create(3, 1);
             ProxyMan.Create(10, 1);
             GameObjectMan.Create(10, 5);
+            ColPairMan.Create(3, 1);
+            //---------------------------------------------------------------------------------------------------------
+            // Sound Experiment
+            //---------------------------------------------------------------------------------------------------------
+
+            // start up the engine
+            sndEngine = new IrrKlang.ISoundEngine();
+
+            // play a sound file
+            music = sndEngine.Play2D("theme.wav");
+            music.Volume = 0.2f;
+
+            // Resident loads
+            sndVader0 = sndEngine.AddSoundSourceFromFile("fastinvader1.wav");
+            sndVader1 = sndEngine.AddSoundSourceFromFile("fastinvader2.wav");
+            sndVader2 = sndEngine.AddSoundSourceFromFile("fastinvader3.wav");
+            sndVader3 = sndEngine.AddSoundSourceFromFile("fastinvader4.wav");
             //---------------------------------------------------------------------------------------------------------
             // Load the Textures
             //---------------------------------------------------------------------------------------------------------
@@ -62,7 +87,7 @@ namespace SpaceInvaders
             ImageMan.Add(Image.Name.YellowBird, Texture.Name.Birds, 124, 34, 60, 56);
             ImageMan.Add(Image.Name.GreenBird, Texture.Name.Birds, 246, 135, 99, 72);
             ImageMan.Add(Image.Name.WhiteBird, Texture.Name.Birds, 139, 131, 84, 97);
-
+            ImageMan.Add(Image.Name.BlueBird, Texture.Name.Birds, 301, 49, 33, 33);
             // --- Pacman Ghosts ---
 
             ImageMan.Add(Image.Name.RedGhost, Texture.Name.PacMan, 616, 148, 33, 33);
@@ -86,6 +111,7 @@ namespace SpaceInvaders
             GameSpriteMan.Add(GameSprite.Name.YellowBird, Image.Name.YellowBird, 300, 400, 50, 50);
             GameSpriteMan.Add(GameSprite.Name.GreenBird, Image.Name.GreenBird, 400, 200, 50, 50);
             GameSpriteMan.Add(GameSprite.Name.WhiteBird, Image.Name.WhiteBird, 600, 200, 100, 100);
+            GameSpriteMan.Add(GameSprite.Name.BlueBird, Image.Name.BlueBird, 50, 50, 50, 50);
 
             GameSpriteMan.Add(GameSprite.Name.RedGhost, Image.Name.RedGhost, 100, 300, 100, 100);
             GameSpriteMan.Add(GameSprite.Name.PinkGhost, Image.Name.PinkGhost, 300, 300, 100, 100);
@@ -244,6 +270,32 @@ namespace SpaceInvaders
             }
 
 
+            //---------------------------------------------------------------------------------------------------------
+            // Create Missile
+            //---------------------------------------------------------------------------------------------------------
+
+            MissileGrid pMissileGrid = new MissileGrid( GameObject.Name.Missile_Grid);
+            pMissileGrid.ActivateGameSprite(pSB_Birds);
+            pMissileGrid.ActivateCollisionSprite(pSB_Birds);
+
+            pMissile = new Missile(GameSprite.Name.BlueBird, GameObject.Name.Missile, 405, 100);
+            pMissile.ActivateGameSprite(pSB_Birds);
+            pMissile.ActivateCollisionSprite(pSB_Birds);
+
+            pMissileGrid.Add(pMissile);
+            GameObjectMan.Attach(pMissile);
+            GameObjectMan.Attach(pMissileGrid);
+            Debug.WriteLine("-------------------");
+
+
+            //---------------------------------------------------------------------------------------------------------
+            // ColPair 
+            //---------------------------------------------------------------------------------------------------------
+
+            // associate in a collision pair
+            ColPairMan.Add(pMissileGrid, pAGrid);
+
+
         }
 
         //-----------------------------------------------------------------------------
@@ -252,14 +304,89 @@ namespace SpaceInvaders
         //      Use this function to control process order
         //      Input, AI, Physics, Animation, and Graphics
         //-----------------------------------------------------------------------------
+
+        public float vol_delta = 0.005f;
+        public int count = 0;
+        public int missileCount = 0;
         public override void Update()
         {
             // Add your update below this line: ----------------------------
 
+            //-----------------------------------------------------------
+            // Sound Update - place here:
+            //-----------------------------------------------------------
+
+            // Snd update - keeps everything moving and updating smoothly
+            sndEngine.Update();
+
+            // walk through all objects and push to proxy
+            GameObjectMan.Update();
+
+            // Do the collision checks
+            ColPairMan.Process();
+
+            //-----------------------------------------------------------
+            // Sound Experiments
+            //-----------------------------------------------------------
+
+            // Adjust music theme volume
+            if (music.Volume > 0.30f)
+            {
+                vol_delta = -0.002f;
+            }
+            else if (music.Volume < 0.00f)
+            {
+                vol_delta = 0.002f;
+            }
+            music.Volume += vol_delta;
+
+
+            // Load by file
+            missileCount++;
+            if (missileCount == 200)
+            {
+                missileCount = 0;
+                // play one by file, not by load 
+                sndEngine.Play2D("shoot.wav");
+            }
+
+            // Trigger already loaded sounds
+            if (pMissile.y > 500.0f || pMissile.y < 100.0f)
+            {
+                pMissile. speed*= -1.0f;
+
+                switch (count)
+                {
+                    case 0:
+                        sndEngine.Play2D(sndVader0, false, false, false);
+                        break;
+                    case 1:
+                        sndEngine.Play2D(sndVader1, false, false, false);
+                        break;
+                    case 2:
+                        sndEngine.Play2D(sndVader2, false, false, false);
+                        break;
+                    case 3:
+                        sndEngine.Play2D(sndVader3, false, false, false);
+                        break;
+                    default:
+                        Debug.Assert(false);
+                        break;
+                }
+
+                count++;
+                if (count == 4)
+                {
+                    count = 0;
+                }
+            }
             // Fire off the timer events
             TimerMan.Update(this.GetTime());
             
             GameObjectMan.Update();
+
+            Debug.WriteLine("\n------------------------------------");
+            ColPairMan.Process();
 
         }
 

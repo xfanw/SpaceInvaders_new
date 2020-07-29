@@ -32,6 +32,11 @@ namespace SpaceInvaders
                 speed *= -1;
             }
         }
+
+        public override void Accept(CollisionVisitor other)
+        {
+            throw new NotImplementedException();
+        }
         // this is just a placeholder, who knows what data will be stored here
 
     }

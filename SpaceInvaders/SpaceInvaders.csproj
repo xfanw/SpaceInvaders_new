@@ -68,16 +68,24 @@
   <ItemGroup>
     <Compile Include="Collision\CollisionObject.cs" />
     <Compile Include="Collision\CollisionRect.cs" />
+    <Compile Include="Collision\Visitor\CollisionVisitor.cs" />
+    <Compile Include="Collision\Visitor\ColPair.cs" />
+    <Compile Include="Collision\Visitor\ColPairMan.cs" />
     <Compile Include="Composite\Component.cs" />
     <Compile Include="Composite\Composite.cs" />
+    <Compile Include="Composite\Iterator\ReverseIterator.cs" />
     <Compile Include="Composite\Leaf.cs" />
-    <Compile Include="GameObjects\Aliens\Aliens.cs" />
+    <Compile Include="GameObjects\Aliens\Alien.cs" />
     <Compile Include="GameObjects\Aliens\AliensColumn.cs" />
     <Compile Include="GameObjects\Aliens\AliensFactory.cs" />
     <Compile Include="GameObjects\Aliens\AliensGrid.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\GameObjectMan.cs" />
     <Compile Include="GameObjects\GameObjectNode.cs" />
+    <Compile Include="GameObjects\Missle\Missile.cs" />
+    <Compile Include="GameObjects\Missle\MissileCategory.cs" />
+    <Compile Include="GameObjects\Missle\MissileFactory.cs" />
+    <Compile Include="GameObjects\Missle\MissileGrid.cs" />
     <Compile Include="GameObjects\NullGameObjs.cs" />
     <Compile Include="GameObjects\Aliens\AlienCategory.cs" />
     <Compile Include="GameObjects\Test_Birds\BirdCategory.cs" />
