@@ -81,6 +81,7 @@ namespace SpaceInvaders
 
         public enum Name
         {
+            // Aliens
             R0C0,
             R0C1,
             R0C2,
@@ -141,6 +142,7 @@ namespace SpaceInvaders
             R4C9,
             R4C10,
 
+            // Aliens_Column
             C0,
             C1,
             C2,
@@ -153,7 +155,31 @@ namespace SpaceInvaders
             C9,
             C10,
 
+            // Aliens_Grid
             Aliens_Grid,
+
+            // Missile
+            Missile,
+            Missile_Grid,
+
+            //Ship
+            Ship,
+            Ship_Grid,
+
+            //Bomb
+            Bomb_Grid,
+
+            // Wall
+            Wall_Up,
+            Wall_Left,
+            Wall_Right,
+            Wall_Down,
+
+            Wall_Side_Column,
+            Wall_UpDown_Column,
+
+
+
 
             // test
             RedBird,

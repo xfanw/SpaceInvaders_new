@@ -12,11 +12,6 @@ namespace SpaceInvaders
             this.pCollosionObject.pCollsionBoxSprite.SetLineColor(1, 0, 1);
         }
 
-        public override void Accept(CollisionVisitor other)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public override void Update()
         {
             baseUpdateBoundingBox();
@@ -25,8 +20,29 @@ namespace SpaceInvaders
 
         }
 
+        // Visitor + Collision
+        public override void Accept(CollisionVisitor other)
+        {
+            other.VisitAlienGrid(this);
+        }
 
-        // Data
+        public override void VisitMissileGroup(MissileGrid g)
+        {
+            // AliensGrid vs MissileGroup
+            Debug.WriteLine("         collide:  {0} <-> {1}", g.GetName(), this.GetName());
+
+            // AliensCol vs Missile 
+            ColPair.Collide((GameObject)g.GetFirstChild(), (GameObject)this.GetFirstChild());
+        }
+
+        public override void VisitMissile(Missile m)
+        {
+            // AliensGrid vs Missile
+            Debug.WriteLine("         collide:  {0} <-> {1}", m.GetName(), this.GetName());
+
+            // AliensCol vs Missile
+            ColPair.Collide(m, (GameObject)this.GetFirstChild());
+        }
 
     }
 }

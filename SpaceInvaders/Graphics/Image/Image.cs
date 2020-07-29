@@ -50,7 +50,7 @@ namespace SpaceInvaders
             YellowBird,
             GreenBird,
             WhiteBird,
-            
+            BlueBird,
             RedGhost,
             PinkGhost,
             BlueGhost,

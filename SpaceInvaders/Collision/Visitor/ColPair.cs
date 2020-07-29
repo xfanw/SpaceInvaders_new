@@ -9,46 +9,30 @@ namespace SpaceInvaders
     }
     public class ColPair : ColPair_Link
     {
-        public enum Name
-        {
-            Bird_Missile,
-
-            NullObject,
-            Not_Initialized
-        }
-
         public ColPair()
             : base()
         {
             this.treeA = null;
             this.treeB = null;
-            this.name = ColPair.Name.Not_Initialized;
         }
 
         ~ColPair()
         {
 
         }
-        public void Set(ColPair.Name colpairName, GameObject pTreeRootA, GameObject pTreeRootB)
+        public void Set( GameObject pTreeRootA, GameObject pTreeRootB)
         {
             Debug.Assert(pTreeRootA != null);
             Debug.Assert(pTreeRootB != null);
 
             this.treeA = pTreeRootA;
             this.treeB = pTreeRootB;
-            this.name = colpairName;
         }
         public void Wash()
         {
             this.treeA = null;
             this.treeB = null;
-            this.name = ColPair.Name.Not_Initialized;
 
-        }
-
-        public ColPair.Name GetName()
-        {
-            return this.name;
         }
 
         public void Process()
@@ -91,10 +75,6 @@ namespace SpaceInvaders
             }
         }
 
-        public void SetName(ColPair.Name inName)
-        {
-            this.name = inName;
-        }
 
         public void Dump()
         {
@@ -102,7 +82,6 @@ namespace SpaceInvaders
         }
 
         // Data: ---------------
-        public ColPair.Name name;
         public GameObject treeA;
         public GameObject treeB;
 

@@ -4,46 +4,33 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    class AliensFactory
+    class MissileFactory
     {
-        public AliensFactory(SpriteBatch.Name spriteBatchName)
+        public MissileFactory(SpriteBatch.Name spriteBatchName)
         {
             this.pSpriteBatch = SpriteBatchMan.Find(spriteBatchName);
             Debug.Assert(this.pSpriteBatch != null);
 
         }
 
-        ~AliensFactory()
+        ~MissileFactory()
         {
-            Debug.WriteLine("~AliensFactory():");
+            Debug.WriteLine("~MissleFactory():");
             this.pSpriteBatch = null;
         }
 
-        public GameObject Create(GameObject.Name name, AlienCategory.Type type, float posX = 0.0f, float posY = 0.0f)
+        public GameObject Create(GameObject.Name name, MissileCategory.Type type, float posX = 0.0f, float posY = 0.0f)
         {
             GameObject pGameObj = null;
 
             switch (type)
             {
-                case AlienCategory.Type.Squid:
-                    pGameObj = new Alien(GameSprite.Name.Sprite_Squid, name, posX, posY);
+                case MissileCategory.Type.Missle:
+                    pGameObj = new Missile(GameSprite.Name.Sprite_Missle, name, posX, posY);
                     break;
 
-                case AlienCategory.Type.Crab:
-                    pGameObj = new Alien(GameSprite.Name.Sprite_Crab, name, posX, posY);
-                    break;
-
-                case AlienCategory.Type.Octopus:
-                    pGameObj = new Alien(GameSprite.Name.Sprite_Octopus, name, posX, posY);
-                    break;
-
-                case AlienCategory.Type.Grid:
-                    pGameObj = new AliensGrid(name);
-                    break;
-
-                case AlienCategory.Type.Column:
-                    pGameObj = new AliensColumn(name);
-
+                case MissileCategory.Type.Grid:
+                    pGameObj = new MissileGrid(name);
                     break;
 
                 default:

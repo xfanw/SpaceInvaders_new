@@ -51,19 +51,39 @@ namespace SpaceInvaders
             Debug.Assert(false);
         }
 
-        //public virtual void VisitMissile(Missile m)
-        //{
-        //    // no differed to subcass
-        //    Debug.WriteLine("Visit by Missile not implemented");
-        //    Debug.Assert(false);
-        //}
+        public virtual void VisitMissile(Missile m)
+        {
+            // no differed to subcass
+            Debug.WriteLine("Visit by Missile not implemented");
+            Debug.Assert(false);
+        }
 
-        //public virtual void VisitMissileGroup(MissileGroup m)
-        //{
-        //    // no differed to subcass
-        //    Debug.WriteLine("Visit by MissileGroup not implemented");
-        //    Debug.Assert(false);
-        //}
+        public virtual void VisitAlien(Alien a)
+        {
+            // no differed to subcass
+            Debug.WriteLine("Visit by Aliens not implemented");
+            Debug.Assert(false);
+        }
+
+        public virtual void VisitAlienGrid(AliensGrid g)
+        {
+            // no differed to subcass
+            Debug.WriteLine("Visit by Aliens not implemented");
+            Debug.Assert(false);
+        }
+        public virtual void VisitAlienColumn(AliensColumn c)
+        {
+            // no differed to subcass
+            Debug.WriteLine("Visit by Aliens not implemented");
+            Debug.Assert(false);
+        }
+        public virtual void VisitMissileGroup(MissileGrid m)
+        {
+            // no differed to subcass
+            Debug.WriteLine("Visit by MissileGroup not implemented");
+            Debug.Assert(false);
+        }
+
 
         public virtual void VisitNullGameObject(NullGameObjs n)
         {
