@@ -75,6 +75,11 @@
     <Compile Include="Composite\Composite.cs" />
     <Compile Include="Composite\Iterator\ReverseIterator.cs" />
     <Compile Include="Composite\Leaf.cs" />
+    <Compile Include="Font\Font.cs" />
+    <Compile Include="Font\FontMan.cs" />
+    <Compile Include="Font\FontSprite.cs" />
+    <Compile Include="Font\Glyph.cs" />
+    <Compile Include="Font\GlyphMan.cs" />
     <Compile Include="GameObjects\Aliens\Alien.cs" />
     <Compile Include="GameObjects\Aliens\AliensColumn.cs" />
     <Compile Include="GameObjects\Aliens\AliensFactory.cs" />
@@ -133,9 +138,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="GameObjects\_GameObjectUML_1.cd" />
     <None Include="Graphics\_Animation.cd" />
     <None Include="Graphics\_GraphicsUML.cd" />
     <None Include="DLink\_NodeMan.cd" />
+    <None Include="Resources\Aliens.tga" />
+    <None Include="Resources\Birds.tga" />
+    <None Include="Resources\Consolas20pt.tga" />
+    <None Include="Resources\Consolas36pt.tga" />
+    <None Include="Resources\HotPink.tga" />
+    <None Include="Resources\Invaders_3.tga" />
+    <None Include="Resources\Invaders_4.tga" />
+    <None Include="Resources\PacMan.tga" />
+    <None Include="Resources\spriteLineRender.fs.glsl" />
+    <None Include="Resources\spriteLineRender.vs.glsl" />
+    <None Include="Resources\SpriteModel.azul" />
+    <None Include="Resources\spriteRender.fs.glsl" />
+    <None Include="Resources\spriteRender.vs.glsl" />
+    <None Include="Resources\stitch.tga" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -154,7 +174,27 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\AzulCoreCLRDebug.dll" />
+    <Content Include="Resources\Consolas20pt.xml" />
+    <Content Include="Resources\Consolas36pt.xml" />
+    <Content Include="Resources\explosion.wav" />
+    <Content Include="Resources\fastinvader1.wav" />
+    <Content Include="Resources\fastinvader2.wav" />
+    <Content Include="Resources\fastinvader3.wav" />
+    <Content Include="Resources\fastinvader4.wav" />
+    <Content Include="Resources\ikpFlac.dll" />
+    <Content Include="Resources\ikpMP3.dll" />
+    <Content Include="Resources\invaderkilled.wav" />
+    <Content Include="Resources\irrKlang.NET4.dll" />
+    <Content Include="Resources\mario_10.wav" />
+    <Content Include="Resources\shoot.wav" />
+    <Content Include="Resources\theme.wav" />
+    <Content Include="Resources\UFODie.mp3" />
+    <Content Include="Resources\UFOFlying.mp3" />
+    <Content Include="Resources\ufo_highpitch.wav" />
+    <Content Include="Resources\ufo_lowpitch.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

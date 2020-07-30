@@ -7,11 +7,7 @@ namespace SpaceInvaders
     // Design Notes:
     //---------------------------------------------------------------------------------------------------------
 
-    abstract public class ProxySprite_Base : SpriteBase
-    {
-
-    }
-    public class ProxySprite : ProxySprite_Base
+    public class ProxySprite : SpriteBase
     {
 
         //---------------------------------------------------------------------------------------------------------
