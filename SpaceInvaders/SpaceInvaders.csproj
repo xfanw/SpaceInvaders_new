@@ -126,6 +126,8 @@
     <Compile Include="Command\Command.cs" />
     <Compile Include="Proxy\ProxyMan.cs" />
     <Compile Include="Proxy\ProxySprite.cs" />
+    <Compile Include="Sound\Sound.cs" />
+    <Compile Include="Sound\SoundMan.cs" />
     <Compile Include="Timer\TimeEvent.cs" />
     <Compile Include="Timer\TimerMan.cs" />
   </ItemGroup>

@@ -8,12 +8,6 @@ namespace SpaceInvaders
 
     class SpaceInvaders : Azul.Game
     {
-        IrrKlang.ISoundEngine sndEngine = null;
-        IrrKlang.ISound music = null;
-        IrrKlang.ISoundSource sndVader0 = null;
-        IrrKlang.ISoundSource sndVader1 = null;
-        IrrKlang.ISoundSource sndVader2 = null;
-        IrrKlang.ISoundSource sndVader3 = null;
         Missile pMissile = null;
         //-----------------------------------------------------------------------------
         // Game::Initialize()
@@ -52,19 +46,12 @@ namespace SpaceInvaders
             //---------------------------------------------------------------------------------------------------------
             // Sound Experiment
             //---------------------------------------------------------------------------------------------------------
-
-            // start up the engine
-            sndEngine = new IrrKlang.ISoundEngine();
-
+            SoundMan.Create(5, 3);
+            SoundMan.LoadAll();
             // play a sound file
-            music = sndEngine.Play2D("theme.wav");
-            music.Volume = 0.2f;
+            SoundMan.PlayMusic(Sound.Name.Snd_Theme);
+            SoundMan.Find(Sound.Name.Snd_Theme).SetVolume(0.2f);
 
-            // Resident loads
-            sndVader0 = sndEngine.AddSoundSourceFromFile("fastinvader1.wav");
-            sndVader1 = sndEngine.AddSoundSourceFromFile("fastinvader2.wav");
-            sndVader2 = sndEngine.AddSoundSourceFromFile("fastinvader3.wav");
-            sndVader3 = sndEngine.AddSoundSourceFromFile("fastinvader4.wav");
             //---------------------------------------------------------------------------------------------------------
             // Load the Textures
             //---------------------------------------------------------------------------------------------------------
@@ -316,8 +303,7 @@ namespace SpaceInvaders
             // Sound Update - place here:
             //-----------------------------------------------------------
 
-            // Snd update - keeps everything moving and updating smoothly
-            sndEngine.Update();
+            //sndEngine.Update();
 
             // walk through all objects and push to proxy
             GameObjectMan.Update();
@@ -330,15 +316,17 @@ namespace SpaceInvaders
             //-----------------------------------------------------------
 
             // Adjust music theme volume
-            if (music.Volume > 0.30f)
+            Sound tmpSnd = SoundMan.Find(Sound.Name.Snd_Theme);
+            float vol = tmpSnd.GetVolume();
+            if (vol > 0.30f)
             {
                 vol_delta = -0.002f;
             }
-            else if (music.Volume < 0.00f)
+            else if (vol < 0.00f)
             {
                 vol_delta = 0.002f;
             }
-            music.Volume += vol_delta;
+            tmpSnd.SetVolume(vol + vol_delta);
 
 
             // Load by file
@@ -347,7 +335,7 @@ namespace SpaceInvaders
             {
                 missileCount = 0;
                 // play one by file, not by load 
-                sndEngine.Play2D("shoot.wav");
+                SoundMan.Play(Sound.Name.Snd_Shoot);
             }
 
             // Trigger already loaded sounds
@@ -358,16 +346,16 @@ namespace SpaceInvaders
                 switch (count)
                 {
                     case 0:
-                        sndEngine.Play2D(sndVader0, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_HitWall);
                         break;
                     case 1:
-                        sndEngine.Play2D(sndVader1, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_Explosion);
                         break;
                     case 2:
-                        sndEngine.Play2D(sndVader2, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_UFO1);
                         break;
                     case 3:
-                        sndEngine.Play2D(sndVader3, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_UFO2);
                         break;
                     default:
                         Debug.Assert(false);
