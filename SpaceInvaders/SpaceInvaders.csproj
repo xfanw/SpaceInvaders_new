@@ -75,6 +75,11 @@
     <Compile Include="Composite\Composite.cs" />
     <Compile Include="Composite\Iterator\ReverseIterator.cs" />
     <Compile Include="Composite\Leaf.cs" />
+    <Compile Include="Font\Font.cs" />
+    <Compile Include="Font\FontMan.cs" />
+    <Compile Include="Font\FontSprite.cs" />
+    <Compile Include="Font\Glyph.cs" />
+    <Compile Include="Font\GlyphMan.cs" />
     <Compile Include="GameObjects\Aliens\Alien.cs" />
     <Compile Include="GameObjects\Aliens\AliensColumn.cs" />
     <Compile Include="GameObjects\Aliens\AliensFactory.cs" />
