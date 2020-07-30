@@ -2,7 +2,11 @@
 
 namespace SpaceInvaders
 {
-    public abstract class SpriteBase : DLink
+    public abstract class SpriteLink : DLink
+    {
+
+    }
+    public abstract class SpriteBase : SpriteLink
     {
 
         public SpriteBase() : base()

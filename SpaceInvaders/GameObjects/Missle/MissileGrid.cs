@@ -39,7 +39,7 @@ namespace SpaceInvaders
             Debug.WriteLine("         collide:  {0} <-> {1}", c.GetName(), this.GetName());
 
             // Missile vs AliensCol
-            ColPair.Collide((GameObject)this.GetFirstChild(),(GameObject)this.GetFirstChild());
+            ColPair.Collide((GameObject)this.GetFirstChild(), (GameObject)this.GetFirstChild());
         }
         public override void VisitAlien(Alien a)
         {
