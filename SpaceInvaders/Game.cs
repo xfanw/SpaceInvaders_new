@@ -8,12 +8,6 @@ namespace SpaceInvaders
 
     class SpaceInvaders : Azul.Game
     {
-        IrrKlang.ISoundEngine sndEngine = null;
-        IrrKlang.ISound music = null;
-        IrrKlang.ISoundSource sndVader0 = null;
-        IrrKlang.ISoundSource sndVader1 = null;
-        IrrKlang.ISoundSource sndVader2 = null;
-        IrrKlang.ISoundSource sndVader3 = null;
         Missile pMissile = null;
         //-----------------------------------------------------------------------------
         // Game::Initialize()
@@ -52,19 +46,12 @@ namespace SpaceInvaders
             //---------------------------------------------------------------------------------------------------------
             // Sound Experiment
             //---------------------------------------------------------------------------------------------------------
-
-            // start up the engine
-            sndEngine = new IrrKlang.ISoundEngine();
-
+            SoundMan.Create(5, 3);
+            SoundMan.LoadAll();
             // play a sound file
-            music = sndEngine.Play2D("theme.wav");
-            music.Volume = 0.2f;
+            SoundMan.PlayMusic(Sound.Name.Snd_Theme);
+            SoundMan.Find(Sound.Name.Snd_Theme).SetVolume(0.2f);
 
-            // Resident loads
-            sndVader0 = sndEngine.AddSoundSourceFromFile("fastinvader1.wav");
-            sndVader1 = sndEngine.AddSoundSourceFromFile("fastinvader2.wav");
-            sndVader2 = sndEngine.AddSoundSourceFromFile("fastinvader3.wav");
-            sndVader3 = sndEngine.AddSoundSourceFromFile("fastinvader4.wav");
             //---------------------------------------------------------------------------------------------------------
             // Load the Textures
             //---------------------------------------------------------------------------------------------------------
@@ -97,15 +84,15 @@ namespace SpaceInvaders
 
             // --- Alians ---
             ImageMan.LoadImage();
-            
+
             //---------------------------------------------------------------------------------------------------------
             // Create Sprites
             //---------------------------------------------------------------------------------------------------------
 
             // --- BoxSprites ---
 
-            BoxSpriteMan.Add( 550.0f, 500.0f, 50.0f, 150.0f, new Azul.Color(1.0f, 1.0f, 1.0f, 1.0f));
-            BoxSpriteMan.Add( 550.0f, 100.0f, 50.0f, 100.0f);
+            BoxSpriteMan.Add(550.0f, 500.0f, 50.0f, 150.0f, new Azul.Color(1.0f, 1.0f, 1.0f, 1.0f));
+            BoxSpriteMan.Add(550.0f, 100.0f, 50.0f, 100.0f);
 
             GameSpriteMan.Add(GameSprite.Name.RedBird, Image.Name.RedBird, 50, 500, 50, 50);
             GameSpriteMan.Add(GameSprite.Name.YellowBird, Image.Name.YellowBird, 300, 400, 50, 50);
@@ -122,7 +109,7 @@ namespace SpaceInvaders
             // Create SpriteBatch
             //---------------------------------------------------------------------------------------------------------
 
- 
+
             SpriteBatch pSB_Birds = SpriteBatchMan.Add(SpriteBatch.Name.AngryBirds);
             SpriteBatch pSB_Alieans = SpriteBatchMan.Add(SpriteBatch.Name.Aliens);
             //---------------------------------------------------------------------------------------------------------
@@ -197,7 +184,7 @@ namespace SpaceInvaders
 
 
 
- 
+
             AliensFactory af = new AliensFactory(SpriteBatch.Name.Aliens);
             AliensGrid pAGrid = (AliensGrid)af.Create(GameObject.Name.Aliens_Grid, AlienCategory.Type.Grid);
             GameObject pC0 = af.Create(GameObject.Name.C0, AlienCategory.Type.Column);
@@ -260,9 +247,9 @@ namespace SpaceInvaders
 
             Debug.WriteLine("\n");
             Debug.WriteLine("Iterator...\n");
-             pIt = new ForwardIterator(pAGrid);
+            pIt = new ForwardIterator(pAGrid);
 
-             pNode = pIt.First();
+            pNode = pIt.First();
             while (!pIt.IsDone())
             {
                 pNode.Dump();
@@ -274,7 +261,7 @@ namespace SpaceInvaders
             // Create Missile
             //---------------------------------------------------------------------------------------------------------
 
-            MissileGrid pMissileGrid = new MissileGrid( GameObject.Name.Missile_Grid);
+            MissileGrid pMissileGrid = new MissileGrid(GameObject.Name.Missile_Grid);
             pMissileGrid.ActivateGameSprite(pSB_Birds);
             pMissileGrid.ActivateCollisionSprite(pSB_Birds);
 
@@ -316,8 +303,7 @@ namespace SpaceInvaders
             // Sound Update - place here:
             //-----------------------------------------------------------
 
-            // Snd update - keeps everything moving and updating smoothly
-            sndEngine.Update();
+            //sndEngine.Update();
 
             // walk through all objects and push to proxy
             GameObjectMan.Update();
@@ -330,15 +316,17 @@ namespace SpaceInvaders
             //-----------------------------------------------------------
 
             // Adjust music theme volume
-            if (music.Volume > 0.30f)
+            Sound tmpSnd = SoundMan.Find(Sound.Name.Snd_Theme);
+            float vol = tmpSnd.GetVolume();
+            if (vol > 0.30f)
             {
                 vol_delta = -0.002f;
             }
-            else if (music.Volume < 0.00f)
+            else if (vol < 0.00f)
             {
                 vol_delta = 0.002f;
             }
-            music.Volume += vol_delta;
+            tmpSnd.SetVolume(vol + vol_delta);
 
 
             // Load by file
@@ -347,27 +335,27 @@ namespace SpaceInvaders
             {
                 missileCount = 0;
                 // play one by file, not by load 
-                sndEngine.Play2D("shoot.wav");
+                SoundMan.Play(Sound.Name.Snd_Shoot);
             }
 
             // Trigger already loaded sounds
             if (pMissile.y > 500.0f || pMissile.y < 100.0f)
             {
-                pMissile. speed*= -1.0f;
+                pMissile.speed *= -1.0f;
 
                 switch (count)
                 {
                     case 0:
-                        sndEngine.Play2D(sndVader0, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_HitWall);
                         break;
                     case 1:
-                        sndEngine.Play2D(sndVader1, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_Explosion);
                         break;
                     case 2:
-                        sndEngine.Play2D(sndVader2, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_UFO1);
                         break;
                     case 3:
-                        sndEngine.Play2D(sndVader3, false, false, false);
+                        SoundMan.Play(Sound.Name.Snd_UFO2);
                         break;
                     default:
                         Debug.Assert(false);
@@ -382,7 +370,7 @@ namespace SpaceInvaders
             }
             // Fire off the timer events
             TimerMan.Update(this.GetTime());
-            
+
             GameObjectMan.Update();
 
             Debug.WriteLine("\n------------------------------------");

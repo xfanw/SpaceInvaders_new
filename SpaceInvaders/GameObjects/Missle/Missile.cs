@@ -10,7 +10,6 @@ namespace SpaceInvaders
             this.x = posX;
             this.y = posY;
             this.bHit = false;
-            this.speed = 1.0f;
         }
 
         ~Missile() { }
@@ -25,11 +24,7 @@ namespace SpaceInvaders
         {
             //if (!bHit)
             //{
-               this.y += this.speed;
-            //} else
-            //{
-            //    this.y = 0;
-            //    bHit = false;
+                this.y += speed;
             //}
         }
         // Visitor + Collision
@@ -67,6 +62,6 @@ namespace SpaceInvaders
         }
 
         public bool bHit;
-        public float speed = 0.0f;
+        public float speed = 1.0f;
     }
 }
