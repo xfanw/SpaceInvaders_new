@@ -18,18 +18,23 @@ namespace SpaceInvaders
             Debug.Assert(this.pSpriteBase != null);
         }
 
-        public void Set(BoxSprite pBox)
+        public void Set(SpriteBase pBase)
         {
-            this.pSpriteBase = pBox;
+            this.pSpriteBase = pBase;
             Debug.Assert(this.pSpriteBase != null);
         }
+        //public void Set(BoxSprite pBox)
+        //{
+        //    this.pSpriteBase = pBox;
+        //    Debug.Assert(this.pSpriteBase != null);
+        //}
 
-        public void Set(ProxySprite pProxy)
-        {
-            this.pSpriteBase = pProxy;
+        //public void Set(ProxySprite pProxy)
+        //{
+        //    this.pSpriteBase = pProxy;
 
-            Debug.Assert(this.pSpriteBase != null);
-        }
+        //    Debug.Assert(this.pSpriteBase != null);
+        //}
 
         public SpriteBase GetSpriteBase()
         {

@@ -52,7 +52,7 @@ namespace SpaceInvaders
         {
             Debug.WriteLine("...LoadingTexture...");
 
-            TextureMan.Add(Texture.Name.Consolas, "Consolas20pt.tga");
+            TextureMan.Add(Texture.Name.Consolas, "Consolas36pt.tga");
             TextureMan.Add(Texture.Name.Invader_3, "Invaders_3.tga");
             TextureMan.Add(Texture.Name.Invader_4, "Invaders_4.tga");
 

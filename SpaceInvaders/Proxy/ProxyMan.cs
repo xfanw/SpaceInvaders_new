@@ -6,13 +6,13 @@ namespace SpaceInvaders
     public class ProxyMan : Manager
     {
         // private Constructor
-        private ProxyMan(int init = 2, int delta = 3) : base(init, delta)
+        private ProxyMan(int init = 1, int delta = 1) : base(init, delta)
         {
 
         }
 
         // public 
-        public static void Create(int init = 2, int delta = 2)
+        public static void Create(int init = 1, int delta = 1)
         {
             if (pMan == null)
             {

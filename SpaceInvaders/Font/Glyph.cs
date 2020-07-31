@@ -79,10 +79,14 @@ namespace SpaceInvaders
             return this.pTexture.GetAzulTexture();
         }
 
+        public int GetKey()
+        {
+            return this.key;
+        }
         // ----------------------------------------------------------------
         // Data 
         // ----------------------------------------------------------------
-        public Name name;
+        private Name name;
         public int key;
         private Azul.Rect pSubRect;
         private Texture pTexture;

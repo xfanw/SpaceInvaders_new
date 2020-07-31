@@ -26,6 +26,7 @@ namespace SpaceInvaders
             other.VisitAlienGrid(this);
         }
 
+        // Missile
         public override void VisitMissileGroup(MissileGrid g)
         {
             // AliensGrid vs MissileGroup
@@ -42,6 +43,39 @@ namespace SpaceInvaders
 
             // AliensCol vs Missile
             ColPair.Collide(m, (GameObject)this.GetFirstChild());
+        }
+
+        // Wall
+        public override void VisitWallGroup(WallGrid g)
+        {
+            // AliensGrid vs MissileGroup
+            //Debug.WriteLine("         collide:  {0} <-> {1}", g.GetName(), this.GetName());
+
+            // AliensCol vs Missile 
+            ColPair.Collide((GameObject)g.GetFirstChild(), this);
+        }
+
+        public override void VisitLeftWall(WallLeft l)
+        {
+            // AliensGrid vs Missile
+            Debug.WriteLine("         collide:  {0} <-> {1}", l.GetName(), this.GetName());
+
+            // AliensCol vs Missile
+            Nums.AliensSpeedX = 2.0f;
+        }
+
+        public override void VisitRightWall(WallRight r)
+        {
+            // AliensGrid vs Missile
+            Debug.WriteLine("         collide:  {0} <-> {1}", r.GetName(), this.GetName());
+
+            // AliensCol vs Missile
+            Nums.AliensSpeedX = - 2.0f;
+        }
+
+        public override void VisitTopWall(WallTop r)
+        {
+            //
         }
 
     }

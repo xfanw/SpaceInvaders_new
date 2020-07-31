@@ -47,17 +47,19 @@ namespace SpaceInvaders
         {
             // Alien vs MissileGroup
             Debug.WriteLine("         collide:  {0} <-> {1}", g.GetName(), this.GetName());
-
+            g.bHit = true;
+            this.Hit(g,this);
             // Missile vs Alien
             Debug.WriteLine("-------> Done  <--------");
-            g.bHit = true;
-            this.Hit();
+
         }
 
-        private void Hit()
+        private void Hit(GameObject a, GameObject b)
         {
             Debug.WriteLine("Alien Hit by Missle");
-
+            ColPair pPair = ColPairMan.GetActivePair();
+            pPair.SetCollision(a, b);
+            pPair.NotifyListeners();
         }
     }
 }

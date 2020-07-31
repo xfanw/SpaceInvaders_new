@@ -51,6 +51,8 @@ namespace SpaceInvaders
 
             while (pColPair != null)
             {
+                pMan.pActiveColPair = pColPair;
+
                 // do the check for a single pair
                 pColPair.Process();
 
@@ -65,6 +67,12 @@ namespace SpaceInvaders
 
             pMan.baseRemove(pColPair);
             pColPair.Wash();
+        }
+
+        public static ColPair GetActivePair()
+        {
+            Debug.Assert(pMan != null);
+            return pMan.pActiveColPair;
         }
 
         public static void Dump()
@@ -91,6 +99,6 @@ namespace SpaceInvaders
 
         // Data: ----------
         private static ColPairMan pMan;
-
+        private ColPair pActiveColPair;
     }
 }

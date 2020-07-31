@@ -27,29 +27,38 @@ namespace SpaceInvaders
 
             return pNode;
         }
-
-
-        public SpriteNode Attach(BoxSprite pBox)
+        public SpriteNode Attach(SpriteBase pBase)
         {
             SpriteNode pNode = (SpriteNode)this.baseAdd();
             Debug.Assert(pNode != null);
 
             // Initialize SpriteBatchNode
-            pNode.Set(pBox);
+            pNode.Set(pBase);
 
             return pNode;
         }
 
-        public SpriteNode Attach(ProxySprite pProxy)
-        {
-            SpriteNode pNode = (SpriteNode)this.baseAdd();
-            Debug.Assert(pNode != null);
+        //public SpriteNode Attach(BoxSprite pBox)
+        //{
+        //    SpriteNode pNode = (SpriteNode)this.baseAdd();
+        //    Debug.Assert(pNode != null);
 
-            // Initialize SpriteBatchNode
-            pNode.Set(pProxy);
+        //    // Initialize SpriteBatchNode
+        //    pNode.Set(pBox);
 
-            return pNode;
-        }
+        //    return pNode;
+        //}
+
+        //public SpriteNode Attach(ProxySprite pProxy)
+        //{
+        //    SpriteNode pNode = (SpriteNode)this.baseAdd();
+        //    Debug.Assert(pNode != null);
+
+        //    // Initialize SpriteBatchNode
+        //    pNode.Set(pProxy);
+
+        //    return pNode;
+        //}
         public void Draw()
         {
             

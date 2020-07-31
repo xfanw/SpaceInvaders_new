@@ -8,8 +8,8 @@ namespace SpaceInvaders
 
         public enum Type
         {
-            Missle,
-            Grid
+            Missile,
+            Missile_Grid
         }
 
 

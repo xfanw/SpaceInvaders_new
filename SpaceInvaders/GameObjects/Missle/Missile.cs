@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SpaceInvaders
 {
@@ -9,6 +10,7 @@ namespace SpaceInvaders
         {
             this.x = posX;
             this.y = posY;
+            this.orgY = posY;
             this.bHit = false;
         }
 
@@ -22,10 +24,19 @@ namespace SpaceInvaders
 
         public void Move()
         {
-            //if (!bHit)
-            //{
-                this.y += speed;
-            //}
+            if (!bHit)
+            {
+                this.y += Nums.MissleSpeedY;
+            } else
+            {
+                this.Reset();
+            }
+        }
+
+        public void Reset()
+        {
+            this.y = orgY;
+            this.bHit = false;
         }
         // Visitor + Collision
         public override void Accept(CollisionVisitor other)
@@ -62,6 +73,6 @@ namespace SpaceInvaders
         }
 
         public bool bHit;
-        public float speed = 1.0f;
+        private float orgY = 0.0f;
     }
 }

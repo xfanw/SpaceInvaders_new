@@ -4,12 +4,15 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    class BirdFactory
+    public class BirdFactory
     {
         public BirdFactory(SpriteBatch.Name spriteBatchName)
         {
             this.pSpriteBatch = SpriteBatchMan.Find(spriteBatchName);
             Debug.Assert(this.pSpriteBatch != null);
+
+            this.pBoxBatch = SpriteBatchMan.Find(SpriteBatch.Name.Batch_Boxes);
+            Debug.Assert(this.pBoxBatch != null);
 
         }
 
@@ -62,14 +65,14 @@ namespace SpaceInvaders
 
             // Attached to Group
             pGameObj.ActivateGameSprite(this.pSpriteBatch);
-            pGameObj.ActivateCollisionSprite(this.pSpriteBatch);
+            pGameObj.ActivateCollisionSprite(this.pBoxBatch);
 
             return pGameObj;
         }
 
         // Data: ---------------------
 
-        SpriteBatch pSpriteBatch;
-
+        private SpriteBatch pSpriteBatch;
+        private SpriteBatch pBoxBatch;
     }
 }

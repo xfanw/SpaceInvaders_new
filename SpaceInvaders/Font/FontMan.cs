@@ -4,21 +4,15 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    abstract public class FontMan_MLink : Manager
-    {
-        public Font_DLink poActive;
-        public Font_DLink poReserve;
-    }
-    class FontMan : FontMan_MLink
+
+    class FontMan : Manager
     {
         //----------------------------------------------------------------------
         // Constructor
         //----------------------------------------------------------------------
         private FontMan(int reserveNum = 3, int reserveGrow = 1)
-            : base()
+            : base(reserveNum, reserveGrow)
         {
-            this.BaseInitialize(reserveNum, reserveGrow);
-            this.pRefNode = (Font)this.derivedCreateNode();
         }
         ~FontMan()
         {
@@ -36,12 +30,12 @@ namespace SpaceInvaders
             Debug.Assert(reserveGrow > 0);
 
             // initialize the singleton here
-            Debug.Assert(pInstance == null);
+            Debug.Assert(pMan == null);
 
             // Do the initialization
-            if (pInstance == null)
+            if (pMan == null)
             {
-                pInstance = new FontMan(reserveNum, reserveGrow);
+                pMan = new FontMan(reserveNum, reserveGrow);
             }
         }
         public static void Destroy()
@@ -76,16 +70,22 @@ namespace SpaceInvaders
             Debug.Assert(pNode != null);
             FontMan pMan = FontMan.privGetInstance();
             pMan.baseRemove(pNode);
+            pNode.Wash();
         }
         public static Font Find(Font.Name name)
         {
-            FontMan pMan = FontMan.privGetInstance();
+            DLink ptr = pMan.poActive;
+            while (ptr != null)
+            {
+                if (((Font)ptr).GetName() == name)
+                {
+                    return (Font)ptr;
+                }
 
-            // Compare functions only compares two Nodes
-            pMan.pRefNode.name = name;
+                ptr = ptr.pNext;
+            }
 
-            Font pData = (Font)pMan.baseFind(pMan.pRefNode);
-            return pData;
+            return null;
         }
 
 
@@ -101,38 +101,15 @@ namespace SpaceInvaders
         //----------------------------------------------------------------------
         // Override Abstract methods
         //----------------------------------------------------------------------
-        override protected Boolean derivedCompare(DLink pLinkA, DLink pLinkB)
-        {
-            // This is used in baseFind() 
-            Debug.Assert(pLinkA != null);
-            Debug.Assert(pLinkB != null);
 
-            Font pDataA = (Font)pLinkA;
-            Font pDataB = (Font)pLinkB;
-
-            Boolean status = false;
-
-            if (pDataA.name == pDataB.name )
-            {
-                status = true;
-            }
-
-            return status;
-        }
-        override protected DLink derivedCreateNode()
+        override protected DLink derivedCreate()
         {
             DLink pNode = new Font();
             Debug.Assert(pNode != null);
             return pNode;
         }
-        override protected void derivedWash(DLink pLink)
-        {
-            Debug.Assert(pLink != null);
-            Font pNode = (Font)pLink;
-            pNode.Wash();
-        }
 
-        override protected void derivedDumpNode(DLink pLink)
+        override protected void derivedDump(DLink pLink)
         {
             Debug.Assert(pLink != null);
             Font pNode = (Font)pLink;
@@ -147,15 +124,16 @@ namespace SpaceInvaders
         private static FontMan privGetInstance()
         {
             // Safety - this forces users to call Create() first before using class
-            Debug.Assert(pInstance != null);
+            Debug.Assert(pMan != null);
 
-            return pInstance;
+            return pMan;
         }
+
+
 
         //----------------------------------------------------------------------
         // Data
         //----------------------------------------------------------------------
-        private static FontMan pInstance = null;
-        private Font pRefNode;
+        private static FontMan pMan = null;
     }
 }

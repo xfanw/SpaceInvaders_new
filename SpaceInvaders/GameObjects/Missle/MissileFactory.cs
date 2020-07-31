@@ -4,12 +4,15 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    class MissileFactory
+    public class MissileFactory
     {
         public MissileFactory(SpriteBatch.Name spriteBatchName)
         {
             this.pSpriteBatch = SpriteBatchMan.Find(spriteBatchName);
             Debug.Assert(this.pSpriteBatch != null);
+
+            this.pBoxBatch = SpriteBatchMan.Find(SpriteBatch.Name.Batch_Boxes);
+            Debug.Assert(this.pBoxBatch != null);
 
         }
 
@@ -25,11 +28,11 @@ namespace SpaceInvaders
 
             switch (type)
             {
-                case MissileCategory.Type.Missle:
+                case MissileCategory.Type.Missile:
                     pGameObj = new Missile(GameSprite.Name.Sprite_Missle, name, posX, posY);
                     break;
 
-                case MissileCategory.Type.Grid:
+                case MissileCategory.Type.Missile_Grid:
                     pGameObj = new MissileGrid(name);
                     break;
 
@@ -45,14 +48,15 @@ namespace SpaceInvaders
 
             // Attached to Group
             pGameObj.ActivateGameSprite(this.pSpriteBatch);
-            pGameObj.ActivateCollisionSprite(this.pSpriteBatch);
+            pGameObj.ActivateCollisionSprite(this.pBoxBatch);
 
             return pGameObj;
         }
 
         // Data: ---------------------
 
-        SpriteBatch pSpriteBatch;
+        private SpriteBatch pSpriteBatch;
+        private SpriteBatch pBoxBatch;
 
     }
 }

@@ -101,6 +101,13 @@
     <Compile Include="GameObjects\Test_Birds\YellowBird.cs" />
     <Compile Include="GameObjects\Test_Birds\RedBird.cs" />
     <Compile Include="GameObjects\Test_Birds\WhiteBird.cs" />
+    <Compile Include="GameObjects\Wall\WallBottom.cs" />
+    <Compile Include="GameObjects\Wall\WallLeft.cs" />
+    <Compile Include="GameObjects\Wall\WallRight.cs" />
+    <Compile Include="GameObjects\Wall\WallTop.cs" />
+    <Compile Include="GameObjects\Wall\WalFlactory.cs" />
+    <Compile Include="GameObjects\Wall\WallCategory.cs" />
+    <Compile Include="GameObjects\Wall\WallGrd.cs" />
     <Compile Include="Graphics\Animation\AnimSprite.cs" />
     <Compile Include="Graphics\Animation\ImageHolder.cs" />
     <Compile Include="DLink\Manager.cs" />
@@ -125,6 +132,10 @@
     <Compile Include="Composite\Iterator\Iterrator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Nums.cs" />
+    <Compile Include="Observer\ColObserver.cs" />
+    <Compile Include="Observer\ColSubject.cs" />
+    <Compile Include="Observer\MissileHitAlienAnim.cs" />
+    <Compile Include="Observer\MissileHitAlienSnd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\Texture\Texture.cs" />
     <Compile Include="Graphics\Texture\TextureMan.cs" />
@@ -195,6 +206,7 @@
     <Content Include="Resources\ufo_highpitch.wav" />
     <Content Include="Resources\ufo_lowpitch.wav" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

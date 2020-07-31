@@ -8,18 +8,19 @@ namespace SpaceInvaders
     {
         public enum Name
         {
-            PacMan,
-            AngryBirds,
-            Boxes,
-            Aliens,
+            Batch_PacMan,
+            Batch_AngryBirds,
+            Batch_Boxes,
+            Batch_Aliens,
+            Batch_Texts,
 
-            Uninitialized
+            Batch_Uninitialized
         }
 
         public SpriteBatch()
             : base()
         {
-            this.name = SpriteBatch.Name.Uninitialized;
+            this.name = SpriteBatch.Name.Batch_Uninitialized;
             this.pNodeMan = new SpriteNodeMan();
             Debug.Assert(this.pNodeMan != null);
         }
@@ -35,19 +36,25 @@ namespace SpaceInvaders
             return pNode;
         }
 
-        public SpriteNode Attach(BoxSprite pBox)
+        public SpriteNode Attach(SpriteBase pBase)
         {
             Debug.Assert(this.pNodeMan != null);
-            SpriteNode pNode = this.pNodeMan.Attach(pBox);
+            SpriteNode pNode = this.pNodeMan.Attach(pBase);
             return pNode;
         }
+        //public SpriteNode Attach(BoxSprite pBox)
+        //{
+        //    Debug.Assert(this.pNodeMan != null);
+        //    SpriteNode pNode = this.pNodeMan.Attach(pBox);
+        //    return pNode;
+        //}
 
-        public SpriteNode Attach(ProxySprite pNode)
-        {
-            Debug.Assert(this.pNodeMan != null);
-            SpriteNode pSBNode = this.pNodeMan.Attach(pNode);
-            return pSBNode;
-        }
+        //public SpriteNode Attach(ProxySprite pNode)
+        //{
+        //    Debug.Assert(this.pNodeMan != null);
+        //    SpriteNode pSBNode = this.pNodeMan.Attach(pNode);
+        //    return pSBNode;
+        //}
         public void Wash()
         {
         }

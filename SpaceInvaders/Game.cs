@@ -8,7 +8,6 @@ namespace SpaceInvaders
 
     class SpaceInvaders : Azul.Game
     {
-        Missile pMissile = null;
         //-----------------------------------------------------------------------------
         // Game::Initialize()
         //		Allows the engine to perform any initialization it needs to before 
@@ -43,6 +42,8 @@ namespace SpaceInvaders
             ProxyMan.Create(10, 1);
             GameObjectMan.Create(10, 5);
             ColPairMan.Create(3, 1);
+            GlyphMan.Create(3, 1);
+            FontMan.Create(1, 1);
             //---------------------------------------------------------------------------------------------------------
             // Sound Experiment
             //---------------------------------------------------------------------------------------------------------
@@ -109,9 +110,10 @@ namespace SpaceInvaders
             // Create SpriteBatch
             //---------------------------------------------------------------------------------------------------------
 
-
-            SpriteBatch pSB_Birds = SpriteBatchMan.Add(SpriteBatch.Name.AngryBirds);
-            SpriteBatch pSB_Alieans = SpriteBatchMan.Add(SpriteBatch.Name.Aliens);
+            SpriteBatch pSB_Texts = SpriteBatchMan.Add(SpriteBatch.Name.Batch_Texts);
+            SpriteBatch pSB_Birds = SpriteBatchMan.Add(SpriteBatch.Name.Batch_AngryBirds);
+            SpriteBatch pSB_Alieans = SpriteBatchMan.Add(SpriteBatch.Name.Batch_Aliens);
+            SpriteBatch pSB_Box = SpriteBatchMan.Add(SpriteBatch.Name.Batch_Boxes);
             //---------------------------------------------------------------------------------------------------------
             // Attach to Sprite Batch
             //---------------------------------------------------------------------------------------------------------
@@ -146,7 +148,7 @@ namespace SpaceInvaders
 
             // create the factory 
 
-            BirdFactory BF = new BirdFactory(SpriteBatch.Name.AngryBirds);
+            BirdFactory BF = new BirdFactory(SpriteBatch.Name.Batch_AngryBirds);
             BirdGrid pGrid = (BirdGrid)BF.Create(GameObject.Name.BirdGrid, BirdCategory.Type.Grid);
 
             // Create Column 0
@@ -185,30 +187,30 @@ namespace SpaceInvaders
 
 
 
-            AliensFactory af = new AliensFactory(SpriteBatch.Name.Aliens);
-            AliensGrid pAGrid = (AliensGrid)af.Create(GameObject.Name.Aliens_Grid, AlienCategory.Type.Grid);
+            AliensFactory af = new AliensFactory(SpriteBatch.Name.Batch_Aliens);
+            AliensGrid pAlienGrid = (AliensGrid)af.Create(GameObject.Name.Aliens_Grid, AlienCategory.Type.Grid);
             GameObject pC0 = af.Create(GameObject.Name.C0, AlienCategory.Type.Column);
-            pAGrid.Add(pC0);
+            pAlienGrid.Add(pC0);
             GameObject pC1 = af.Create(GameObject.Name.C1, AlienCategory.Type.Column);
-            pAGrid.Add(pC1);
+            pAlienGrid.Add(pC1);
             GameObject pC2 = af.Create(GameObject.Name.C2, AlienCategory.Type.Column);
-            pAGrid.Add(pC2);
-            //GameObject pC3 = af.Create(GameObject.Name.C3, AlienCategory.Type.Column);
-            //pAGrid.Add(pC3);
-            //GameObject pC4 = af.Create(GameObject.Name.C4, AlienCategory.Type.Column);
-            //pAGrid.Add(pC4);
-            //GameObject pC5 = af.Create(GameObject.Name.C5, AlienCategory.Type.Column);
-            //pAGrid.Add(pC5);
-            //GameObject pC6 = af.Create(GameObject.Name.C6, AlienCategory.Type.Column);
-            //pAGrid.Add(pC6);
-            //GameObject pC7 = af.Create(GameObject.Name.C7, AlienCategory.Type.Column);
-            //pAGrid.Add(pC7);
-            //GameObject pC8 = af.Create(GameObject.Name.C8, AlienCategory.Type.Column);
-            //pAGrid.Add(pC8);
-            //GameObject pC9 = af.Create(GameObject.Name.C9, AlienCategory.Type.Column);
-            //pAGrid.Add(pC9);
-            //GameObject pC10 = af.Create(GameObject.Name.C10, AlienCategory.Type.Column);
-            //pAGrid.Add(pC10);
+            pAlienGrid.Add(pC2);
+            GameObject pC3 = af.Create(GameObject.Name.C3, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC3);
+            GameObject pC4 = af.Create(GameObject.Name.C4, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC4);
+            GameObject pC5 = af.Create(GameObject.Name.C5, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC5);
+            GameObject pC6 = af.Create(GameObject.Name.C6, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC6);
+            GameObject pC7 = af.Create(GameObject.Name.C7, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC7);
+            GameObject pC8 = af.Create(GameObject.Name.C8, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC8);
+            GameObject pC9 = af.Create(GameObject.Name.C9, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC9);
+            GameObject pC10 = af.Create(GameObject.Name.C10, AlienCategory.Type.Column);
+            pAlienGrid.Add(pC10);
 
             pGameObj = af.Create(GameObject.Name.R0C0, AlienCategory.Type.Squid, 60.0f + 40.0f * 0, 500.0f - 30.0f * 0);
             pC0.Add(pGameObj);
@@ -243,35 +245,126 @@ namespace SpaceInvaders
             pC2.Add(pGameObj);
             pGameObj = af.Create(GameObject.Name.R4C2, AlienCategory.Type.Octopus, 60.0f + 40.0f * 2, 500.0f - 30.0f * 4);
             pC2.Add(pGameObj);
-            pAGrid.Print();
 
-            Debug.WriteLine("\n");
-            Debug.WriteLine("Iterator...\n");
-            pIt = new ForwardIterator(pAGrid);
+            pGameObj = af.Create(GameObject.Name.R0C3, AlienCategory.Type.Squid, 60.0f + 40.0f * 3, 500.0f - 30.0f * 0);
+            pC3.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C3, AlienCategory.Type.Squid, 60.0f + 40.0f * 3, 500.0f - 30.0f * 1);
+            pC3.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C3, AlienCategory.Type.Crab, 60.0f + 40.0f * 3, 500.0f - 30.0f * 2);
+            pC3.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C3, AlienCategory.Type.Crab, 60.0f + 40.0f * 3, 500.0f - 30.0f * 3);
+            pC3.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C3, AlienCategory.Type.Octopus, 60.0f + 40.0f * 3, 500.0f - 30.0f * 4);
+            pC3.Add(pGameObj);
 
-            pNode = pIt.First();
-            while (!pIt.IsDone())
-            {
-                pNode.Dump();
-                pNode = pIt.Next();
-            }
+
+            pGameObj = af.Create(GameObject.Name.R0C4, AlienCategory.Type.Squid, 60.0f + 40.0f * 4, 500.0f - 30.0f * 0);
+            pC4.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C4, AlienCategory.Type.Squid, 60.0f + 40.0f * 4, 500.0f - 30.0f * 1);
+            pC4.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C4, AlienCategory.Type.Crab, 60.0f + 40.0f * 4, 500.0f - 30.0f * 2);
+            pC4.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C4, AlienCategory.Type.Crab, 60.0f + 40.0f * 4, 500.0f - 30.0f * 3);
+            pC4.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C4, AlienCategory.Type.Octopus, 60.0f + 40.0f * 4, 500.0f - 30.0f * 4);
+            pC4.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C5, AlienCategory.Type.Squid, 60.0f + 40.0f * 5, 500.0f - 30.0f * 0);
+            pC5.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C5, AlienCategory.Type.Squid, 60.0f + 40.0f * 5, 500.0f - 30.0f * 1);
+            pC5.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C5, AlienCategory.Type.Crab, 60.0f + 40.0f * 5, 500.0f - 30.0f * 2);
+            pC5.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C5, AlienCategory.Type.Crab, 60.0f + 40.0f * 5, 500.0f - 30.0f * 3);
+            pC5.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C5, AlienCategory.Type.Octopus, 60.0f + 40.0f * 5, 500.0f - 30.0f * 4);
+            pC5.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C6, AlienCategory.Type.Squid, 60.0f + 40.0f * 6, 500.0f - 30.0f * 0);
+            pC6.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C6, AlienCategory.Type.Squid, 60.0f + 40.0f * 6, 500.0f - 30.0f * 1);
+            pC6.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C6, AlienCategory.Type.Crab, 60.0f + 40.0f * 6, 500.0f - 30.0f * 2);
+            pC6.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C6, AlienCategory.Type.Crab, 60.0f + 40.0f * 6, 500.0f - 30.0f * 3);
+            pC6.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C6, AlienCategory.Type.Octopus, 60.0f + 40.0f * 6, 500.0f - 30.0f * 4);
+            pC6.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C7, AlienCategory.Type.Squid, 60.0f + 40.0f * 7, 500.0f - 30.0f * 0);
+            pC7.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C7, AlienCategory.Type.Squid, 60.0f + 40.0f * 7, 500.0f - 30.0f * 1);
+            pC7.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C7, AlienCategory.Type.Crab, 60.0f + 40.0f * 7, 500.0f - 30.0f * 2);
+            pC7.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C7, AlienCategory.Type.Crab, 60.0f + 40.0f * 7, 500.0f - 30.0f * 3);
+            pC7.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C7, AlienCategory.Type.Octopus, 60.0f + 40.0f * 7, 500.0f - 30.0f * 4);
+            pC7.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C8, AlienCategory.Type.Squid, 60.0f + 40.0f * 8, 500.0f - 30.0f * 0);
+            pC8.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C8, AlienCategory.Type.Squid, 60.0f + 40.0f * 8, 500.0f - 30.0f * 1);
+            pC8.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C8, AlienCategory.Type.Crab, 60.0f + 40.0f * 8, 500.0f - 30.0f * 2);
+            pC8.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C8, AlienCategory.Type.Crab, 60.0f + 40.0f * 8, 500.0f - 30.0f * 3);
+            pC8.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C8, AlienCategory.Type.Octopus, 60.0f + 40.0f * 8, 500.0f - 30.0f * 4);
+            pC8.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C9, AlienCategory.Type.Squid, 60.0f + 40.0f * 9, 500.0f - 30.0f * 0);
+            pC9.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C9, AlienCategory.Type.Squid, 60.0f + 40.0f * 9, 500.0f - 30.0f * 1);
+            pC9.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C9, AlienCategory.Type.Crab, 60.0f + 40.0f * 9, 500.0f - 30.0f * 2);
+            pC9.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C9, AlienCategory.Type.Crab, 60.0f + 40.0f * 9, 500.0f - 30.0f * 3);
+            pC9.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C9, AlienCategory.Type.Octopus, 60.0f + 40.0f * 9, 500.0f - 30.0f * 4);
+            pC9.Add(pGameObj);
+
+            pGameObj = af.Create(GameObject.Name.R0C10, AlienCategory.Type.Squid, 60.0f + 40.0f * 10, 500.0f - 30.0f * 0);
+            pC10.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R1C10, AlienCategory.Type.Squid, 60.0f + 40.0f * 10, 500.0f - 30.0f * 1);
+            pC10.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R2C10, AlienCategory.Type.Crab, 60.0f + 40.0f * 10, 500.0f - 30.0f * 2);
+            pC10.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R3C10, AlienCategory.Type.Crab, 60.0f + 40.0f * 10, 500.0f - 30.0f * 3);
+            pC10.Add(pGameObj);
+            pGameObj = af.Create(GameObject.Name.R4C10, AlienCategory.Type.Octopus, 60.0f + 40.0f * 10, 500.0f - 30.0f * 4);
+            pC10.Add(pGameObj);
+
+            pAlienGrid.Print();
+
+            //---------------------------------------------------------------------------------------------------------
+            // Create Walls
+            //---------------------------------------------------------------------------------------------------------
+
+            // Wall Root
+            WallFactory WF = new WallFactory();
+            WallGrid pWallGrid = (WallGrid)WF.Create(GameObject.Name.Wall_Grid, WallCategory.Type.Wall_Grid, 0.0f, 0.0f);
+
+            WallLeft pWallLeft = (WallLeft)WF.Create(GameObject.Name.Wall_Left, WallCategory.Type.Wall_Left, 20, 280, 20, 500);
+            WallRight pWallRight = (WallRight)WF.Create(GameObject.Name.Wall_Right, WallCategory.Type.Wall_Right, 780, 280, 20, 500);
+            WallTop pWallTop = (WallTop)WF.Create(GameObject.Name.Wall_Top, WallCategory.Type.Wall_Top, 400, 530, 700, 20);
+            WallBottom pWallBottom = (WallBottom)WF.Create(GameObject.Name.Wall_Bottom, WallCategory.Type.Wall_Bottom, 400, 20, 700, 20);
+
+            // Add to the composite the children
+            pWallGrid.Add(pWallRight);
+            pWallGrid.Add(pWallLeft);
+            pWallGrid.Add(pWallTop);
+            pWallGrid.Add(pWallBottom);
 
 
             //---------------------------------------------------------------------------------------------------------
             // Create Missile
             //---------------------------------------------------------------------------------------------------------
-
-            MissileGrid pMissileGrid = new MissileGrid(GameObject.Name.Missile_Grid);
-            pMissileGrid.ActivateGameSprite(pSB_Birds);
-            pMissileGrid.ActivateCollisionSprite(pSB_Birds);
-
-            pMissile = new Missile(GameSprite.Name.BlueBird, GameObject.Name.Missile, 405, 100);
-            pMissile.ActivateGameSprite(pSB_Birds);
-            pMissile.ActivateCollisionSprite(pSB_Birds);
+            MissileFactory MF = new MissileFactory(SpriteBatch.Name.Batch_Aliens);
+            MissileGrid pMissileGrid = (MissileGrid)MF.Create(GameObject.Name.Missile_Grid, MissileCategory.Type.Missile_Grid);
+            Missile pMissile = (Missile)MF.Create(GameObject.Name.Missile, MissileCategory.Type.Missile, 405, 100);
 
             pMissileGrid.Add(pMissile);
-            GameObjectMan.Attach(pMissile);
-            GameObjectMan.Attach(pMissileGrid);
             Debug.WriteLine("-------------------");
 
 
@@ -280,9 +373,18 @@ namespace SpaceInvaders
             //---------------------------------------------------------------------------------------------------------
 
             // associate in a collision pair
-            ColPairMan.Add(pMissileGrid, pAGrid);
+            ColPair pair = ColPairMan.Add(pMissileGrid, pAlienGrid);
+            pair.Attach(new MissileHitAlienAnim());
+            pair.Attach(new MissileHitAlienSnd());
+            ColPairMan.Add(pWallGrid, pAlienGrid);
+            ColPairMan.Add(pWallGrid, pMissileGrid);
+            //---------------------------------------------------------------------------------------------------------
+            // Font Experiment
+            //---------------------------------------------------------------------------------------------------------
+            GlyphMan.AddXml(Glyph.Name.Consolas36pt, "Consolas36pt.xml", Texture.Name.Consolas);
 
-
+            FontMan.Add(Font.Name.TestMessage, SpriteBatch.Name.Batch_Texts, "ABC", Glyph.Name.Consolas36pt, 500, 500);
+            FontMan.Add(Font.Name.TestOneOff, SpriteBatch.Name.Batch_Texts, "XYZ1234!#=+ZYX", Glyph.Name.Consolas36pt, 200, 200);
         }
 
         //-----------------------------------------------------------------------------
@@ -303,7 +405,12 @@ namespace SpaceInvaders
             // Sound Update - place here:
             //-----------------------------------------------------------
 
-            //sndEngine.Update();
+            //---------------------------------------------------------------------------------------------------------
+            // Font Experiment
+            //---------------------------------------------------------------------------------------------------------
+            Font pTestMessage = FontMan.Find(Font.Name.TestMessage);
+            Debug.Assert(pTestMessage != null);
+            pTestMessage.UpdateMessage("dog " + count++);
 
             // walk through all objects and push to proxy
             GameObjectMan.Update();
@@ -338,42 +445,37 @@ namespace SpaceInvaders
                 SoundMan.Play(Sound.Name.Snd_Shoot);
             }
 
-            // Trigger already loaded sounds
-            if (pMissile.y > 500.0f || pMissile.y < 100.0f)
-            {
-                pMissile.speed *= -1.0f;
+            //// Trigger already loaded sounds
+            //if (pMissile.y > 500.0f || pMissile.y < 100.0f)
+            //{
+            //    pMissile.speed *= -1.0f;
 
-                switch (count)
-                {
-                    case 0:
-                        SoundMan.Play(Sound.Name.Snd_HitWall);
-                        break;
-                    case 1:
-                        SoundMan.Play(Sound.Name.Snd_Explosion);
-                        break;
-                    case 2:
-                        SoundMan.Play(Sound.Name.Snd_UFO1);
-                        break;
-                    case 3:
-                        SoundMan.Play(Sound.Name.Snd_UFO2);
-                        break;
-                    default:
-                        Debug.Assert(false);
-                        break;
-                }
+            //    switch (count%4)
+            //    {
+            //        case 0:
+            //            SoundMan.Play(Sound.Name.Snd_HitWall);
+            //            break;
+            //        case 1:
+            //            SoundMan.Play(Sound.Name.Snd_Explosion);
+            //            break;
+            //        case 2:
+            //            SoundMan.Play(Sound.Name.Snd_UFO1);
+            //            break;
+            //        case 3:
+            //            SoundMan.Play(Sound.Name.Snd_UFO2);
+            //            break;
+            //        default:
+            //            Debug.Assert(false);
+            //            break;
+            //    }
 
-                count++;
-                if (count == 4)
-                {
-                    count = 0;
-                }
-            }
+            //}
             // Fire off the timer events
             TimerMan.Update(this.GetTime());
 
             GameObjectMan.Update();
 
-            Debug.WriteLine("\n------------------------------------");
+            //Debug.WriteLine("\n------------------------------------");
             ColPairMan.Process();
 
         }

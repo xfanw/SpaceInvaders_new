@@ -4,22 +4,14 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    abstract public class GlyphMan_MLink : Manager
-    {
-        public Glyph_DLink poActive;
-        public Glyph_DLink poReserve;
-    }
-    class GlyphMan : GlyphMan_MLink
+    class GlyphMan : Manager
     {
         //----------------------------------------------------------------------
         // Constructor
         //----------------------------------------------------------------------
         private GlyphMan(int reserveNum = 3, int reserveGrow = 1)
-            : base()
+            : base(reserveNum, reserveGrow)
         {
-            this.BaseInitialize(reserveNum, reserveGrow);
-
-            this.pRefNode = (Glyph)this.derivedCreateNode();
         }
         ~GlyphMan()
         {
@@ -37,12 +29,12 @@ namespace SpaceInvaders
             Debug.Assert(reserveGrow > 0);
 
             // initialize the singleton here
-            Debug.Assert(pInstance == null);
+            Debug.Assert(pMan == null);
 
             // Do the initialization
-            if (pInstance == null)
+            if (pMan == null)
             {
-                pInstance = new GlyphMan(reserveNum, reserveGrow);
+                pMan = new GlyphMan(reserveNum, reserveGrow);
             }
         }
         public static void Destroy()
@@ -140,22 +132,28 @@ namespace SpaceInvaders
          // Debug.Write("\n");
         }
 
-        public static void Remove(Glyph pNode)
+        public static void Remove(Glyph pGlyph)
         {
-            Debug.Assert(pNode != null);
-            GlyphMan pMan = GlyphMan.privGetInstance();
-            pMan.baseRemove(pNode);
+            Debug.Assert(pMan != null);
+            Debug.Assert(pGlyph != null);
+
+            pMan.baseRemove(pGlyph);
+            pGlyph.Wash();
         }
         public static Glyph Find(Glyph.Name name, int key)
         {
-            GlyphMan pMan = GlyphMan.privGetInstance();
+            DLink ptr = pMan.poActive;
+            while (ptr != null)
+            {
+                if (((Glyph)ptr).GetKey() == key)
+                {
+                    return (Glyph)ptr;
+                }
 
-            // Compare functions only compares two Nodes
-            pMan.pRefNode.name = name;
-            pMan.pRefNode.key = key;
+                ptr = ptr.pNext;
+            }
 
-            Glyph pData = (Glyph)pMan.baseFind(pMan.pRefNode);
-            return pData;
+            return null;
         }
 
         public static void Dump()
@@ -166,43 +164,23 @@ namespace SpaceInvaders
             Debug.WriteLine("------ Glyph Manager ------");
             pMan.baseDump();
         }
+
+        //----------------------------------------------------------------------
+        // Private methods
+        //----------------------------------------------------------------------
+        private static GlyphMan privGetInstance()
+        {
+            // Safety - this forces users to call Create() first before using class
+            Debug.Assert(pMan != null);
+
+            return pMan;
+        }
+
         //----------------------------------------------------------------------
         // Override Abstract methods
         //----------------------------------------------------------------------
-        override protected Boolean derivedCompare(DLink pLinkA, DLink pLinkB)
-        {
-            // This is used in baseFind() 
-            Debug.Assert(pLinkA != null);
-            Debug.Assert(pLinkB != null);
 
-            Glyph pDataA = (Glyph)pLinkA;
-            Glyph pDataB = (Glyph)pLinkB;
-
-            Boolean status = false;
-
-            if (pDataA.name == pDataB.name && pDataA.key == pDataB.key)
-            {
-                status = true;
-            }
-
-            return status;
-        }
-
-        override protected DLink derivedCreateNode()
-        {
-            DLink pNode = new Glyph();
-            Debug.Assert(pNode != null);
-            return pNode;
-        }
-
-        override protected void derivedWash(DLink pLink)
-        {
-            Debug.Assert(pLink != null);
-            Glyph pNode = (Glyph)pLink;
-            pNode.Wash();
-        }
-
-        override protected void derivedDumpNode(DLink pLink)
+        protected override void derivedDump(DLink pLink)
         {
             Debug.Assert(pLink != null);
             Glyph pNode = (Glyph)pLink;
@@ -211,21 +189,14 @@ namespace SpaceInvaders
             pNode.Dump();
         }
 
-        //----------------------------------------------------------------------
-        // Private methods
-        //----------------------------------------------------------------------
-        private static GlyphMan privGetInstance()
+        protected override DLink derivedCreate()
         {
-            // Safety - this forces users to call Create() first before using class
-            Debug.Assert(pInstance != null);
-
-            return pInstance;
+            return new Glyph();
         }
 
         //----------------------------------------------------------------------
         // Data
         //----------------------------------------------------------------------
-        private static GlyphMan pInstance = null;
-        private Glyph pRefNode;
+        private static GlyphMan pMan = null;
     }
 }

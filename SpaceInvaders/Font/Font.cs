@@ -55,11 +55,15 @@ namespace SpaceInvaders
         {
         }
 
+        public Name GetName()
+        {
+            return this.name;
+        }
 
         // ----------------------------------------------------------------
         // Data 
         // ----------------------------------------------------------------
-        public Name name;
+        private Name name;
         public FontSprite pFontSprite;
         static private String pNullString = "null";
     }

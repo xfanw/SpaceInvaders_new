@@ -170,14 +170,15 @@ namespace SpaceInvaders
             Bomb_Grid,
 
             // Wall
-            Wall_Up,
+            Wall_Top,
             Wall_Left,
             Wall_Right,
-            Wall_Down,
+            Wall_Bottom,
 
             Wall_Side_Column,
             Wall_UpDown_Column,
 
+            Wall_Grid,
 
 
 
