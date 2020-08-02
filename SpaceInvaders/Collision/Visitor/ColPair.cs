@@ -14,8 +14,8 @@ namespace SpaceInvaders
         {
             this.treeA = null;
             this.treeB = null;
-            this.poSubject = new ColSubject();
-            Debug.Assert(this.poSubject != null);
+            this.pObserver = new ColObserver();
+            Debug.Assert(this.pObserver != null);
         }
 
         ~ColPair()
@@ -85,13 +85,13 @@ namespace SpaceInvaders
 
 
         // Obserbver
-        public void Attach(ColObserver observer)
+        public void Attach(ColListener Listener)
         {
-            this.poSubject.Attach(observer);
+            this.pObserver.Attach(Listener);
         }
-        public void NotifyListeners()
+        public void NotifyObservers()
         {
-            this.poSubject.Notify();
+            this.pObserver.Notify();
         }
         public void SetCollision(GameObject pObjA, GameObject pObjB)
         {
@@ -99,13 +99,13 @@ namespace SpaceInvaders
             Debug.Assert(pObjB != null);
 
             // GameObject pAlien = AlienCategory.GetAlien(objA, objB);
-            this.poSubject.pObjA = pObjA;
-            this.poSubject.pObjB = pObjB;
+            //this.pObserver.pObjA = pObjA;
+            //this.pObserver.pObjB = pObjB;
         }
         // Data: ---------------
         public GameObject treeA;
         public GameObject treeB;
-        private ColSubject poSubject;
+        private ColObserver pObserver;
 
 
     }

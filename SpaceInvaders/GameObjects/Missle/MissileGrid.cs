@@ -4,7 +4,7 @@ namespace SpaceInvaders
 {
     public class MissileGrid : Composite
     {
-        public MissileGrid(MissileCategory.Name name, int posX = 0, int posY = 0) : base(name)
+        public MissileGrid(MissileCategory.Name name, float posX = 0.0f, float posY = 0.0f) : base(name)
         {
             this.x = posX;
             this.y = posY;

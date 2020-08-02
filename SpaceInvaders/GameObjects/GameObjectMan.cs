@@ -50,16 +50,24 @@ namespace SpaceInvaders
         {
             Debug.Assert(pMan != null);
 
-            GameObjectNode pNode = (GameObjectNode)pMan.poActive;
+            GameObjectNode pGameObjectNode = (GameObjectNode)pMan.poActive;
 
-            while (pNode != null)
+            while (pGameObjectNode != null)
             {
-                // Update the node
-                Debug.Assert(pNode.GetObj() != null);
+                ReverseIterator pRev = new ReverseIterator(pGameObjectNode.pGamObj);
 
-                pNode.GetObj().Update();
+                Component pNode = pRev.First();
+                while (!pRev.IsDone())
+                {
+                    GameObject pGameObj = (GameObject)pNode;
 
-                pNode = (GameObjectNode)pNode.pNext;
+                    //   Debug.WriteLine("update: {0} ({1})", pGameObj, pGameObj.GetHashCode());
+                    pGameObj.Update();
+
+                    pNode = pRev.Next();
+                }
+
+                pGameObjectNode = (GameObjectNode)pGameObjectNode.pNext;
             }
         }
         public static void Remove(GameObjectNode pObj)

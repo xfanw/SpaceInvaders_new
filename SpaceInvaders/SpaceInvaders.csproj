@@ -127,13 +127,20 @@
     <Compile Include="Graphics\Sprite\GameSprite.cs" />
     <Compile Include="Graphics\Sprite\GameSpriteMan.cs" />
     <Compile Include="Graphics\Sprite\SpriteBase.cs" />
+    <Compile Include="Input\InputMan.cs" />
+    <Compile Include="Input\InputObservers\OnePlayerObserver.cs" />
+    <Compile Include="Input\InputObservers\ShipMoveLeftObserver.cs" />
+    <Compile Include="Input\InputObservers\ShipMoveRightObserver.cs" />
+    <Compile Include="Input\InputObservers\ShipShootObserver.cs" />
+    <Compile Include="Input\InputObservers\ToggleBoxObserver.cs" />
+    <Compile Include="Input\InputObservers\TwoPlayerObserver.cs" />
     <Compile Include="Input\InputTest.cs" />
     <Compile Include="Composite\Iterator\ForwardIterator.cs" />
     <Compile Include="Composite\Iterator\Iterrator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Nums.cs" />
     <Compile Include="Observer\ColObserver.cs" />
-    <Compile Include="Observer\ColSubject.cs" />
+    <Compile Include="Observer\ColListener.cs" />
     <Compile Include="Observer\MissileHitAlienAnim.cs" />
     <Compile Include="Observer\MissileHitAlienSnd.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -206,7 +213,9 @@
     <Content Include="Resources\ufo_highpitch.wav" />
     <Content Include="Resources\ufo_lowpitch.wav" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ship\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -49,7 +49,7 @@ namespace SpaceInvaders
 
             // add it to the gameObjectManager
             Debug.Assert(pGameObj != null);
-            GameObjectMan.Attach(pGameObj);
+            //GameObjectMan.Attach(pGameObj);
 
             // Attached to Group
             //pGameObj.ActivateGameSprite(this.pSpriteBatch);

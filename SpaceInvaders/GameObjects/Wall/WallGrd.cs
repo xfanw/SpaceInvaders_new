@@ -4,7 +4,7 @@ namespace SpaceInvaders
 {
     public class WallGrid : Composite
     {
-        public WallGrid(MissileCategory.Name name, int posX = 0, int posY = 0) : base(name)
+        public WallGrid(MissileCategory.Name name, float posX = 0.0f, float posY = 0.0f) : base(name)
         {
             this.x = posX;
             this.y = posY;

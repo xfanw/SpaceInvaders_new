@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace SpaceInvaders
 {
-    class MissileHitAlienAnim : ColObserver
+    class MissileHitAlienAnim : ColListener
     {
         public MissileHitAlienAnim()
         {
@@ -11,7 +11,7 @@ namespace SpaceInvaders
         }
         public override void Notify()
         {
-            Debug.WriteLine("Grid_Observer: {0} {1}", this.pSubject.pObjA, this.pSubject.pObjB);
+            //Debug.WriteLine("Grid_Listener: {0} {1}", this.pSubject.pObjA, this.pSubject.pObjB);
             Debug.WriteLine("Missile Hit Alien ---> Play Animation.");
 
         }

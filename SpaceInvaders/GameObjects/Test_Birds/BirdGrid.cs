@@ -4,7 +4,7 @@ namespace SpaceInvaders
 {
     public class BirdGrid : Composite
     {
-        public BirdGrid(AlienCategory.Name name, int posX = 0, int posY = 0)
+        public BirdGrid(AlienCategory.Name name, float posX = 0.0f, float posY = 0.0f)
         : base(name)
         {
             this.x = posX;

@@ -4,7 +4,7 @@ namespace SpaceInvaders
 {
     public class AliensGrid : Composite
     {
-        public AliensGrid(AlienCategory.Name name, int posX = 0, int posY = 0)
+        public AliensGrid(AlienCategory.Name name, float posX = 0.0f, float posY = 0.0f)
         : base(name)
         {
             this.x = posX;

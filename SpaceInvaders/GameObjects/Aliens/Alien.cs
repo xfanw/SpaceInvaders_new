@@ -59,7 +59,7 @@ namespace SpaceInvaders
             Debug.WriteLine("Alien Hit by Missle");
             ColPair pPair = ColPairMan.GetActivePair();
             pPair.SetCollision(a, b);
-            pPair.NotifyListeners();
+            pPair.NotifyObservers();
         }
     }
 }

@@ -122,7 +122,7 @@ namespace SpaceInvaders
                         if (reader.Name == "character")
                         {
                             // have all the data... so now create a glyph
-                            Debug.WriteLine("key:{0} x:{1} y:{2} w:{3} h:{4}", key, x, y, width, height);
+                            //Debug.WriteLine("key:{0} x:{1} y:{2} w:{3} h:{4}", key, x, y, width, height);
                             GlyphMan.Add(glyphName, key, textName, x, y, width, height);
                         }
                         break;
